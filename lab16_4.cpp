@@ -21,33 +21,31 @@ int main()
 }
 void shuffle(int &a, int &b, int &c, int &d)
 {
-	int x[4] = {50, 100, 500, 1000}, index[4]{-1}, round = 0;
-	do
-	{
-		int randNum = rand() % 4;
-		if (round == 0 ||  (randNum != index[0] && randNum != index[1] && randNum != index[2] && randNum != index[3]))
-		{
-			index[round] = randNum;
-			if (round == 0)
-			{
-				a = x[randNum];
-				round++;
-			}
-			else if (round == 1)
-			{
-				b = x[randNum];
-				round++;
-			}
-			else if (round == 2)
-			{
-				c = x[randNum];
-				round++;
-			}
-			else
-			{
-				d = x[randNum];
-				round++;
-			}
-		}
-	}while (round <= 3);
+    int x[4] = {50, 100, 500, 1000}, index[4] = {-1,-1,-1,-1}, round = 0;
+    while (round <= 3)
+    {
+        int randNum = rand() % 4;
+        bool same = false;
+        for (int i = 0; i < 4; i++)
+        {
+            if (randNum == index[i])
+            {
+                same = true;
+                break;
+            }
+        }
+        if (same == true)
+            continue;
+        else
+            index[round] = randNum;
+        if (round == 0)
+            a = x[randNum];
+        else if (round == 1)
+            b = x[randNum];
+        else if (round == 2)
+            c = x[randNum];
+        else
+            d = x[randNum];
+        round++;
+    }
 }
